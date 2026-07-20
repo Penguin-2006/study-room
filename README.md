@@ -4,8 +4,8 @@ A real-time collaborative study room app built with the MERN stack and Socket.io
 
 ## Live Demo
 
-- Frontend: https://your-app.vercel.app
-- Backend: https://your-app.onrender.com
+- Frontend: https://study-room-zeta.vercel.app
+- Backend: https://study-room-server-4c0f.onrender.com
 
 > Note: The backend is hosted on Render's free tier and may take 30-60 seconds to wake up on the first request if it has been inactive.
 

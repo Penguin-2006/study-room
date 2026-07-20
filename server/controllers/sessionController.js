@@ -1,7 +1,7 @@
 import Session from "../models/Session.js";
 import Room from "../models/Room.js";
 
-// @route GET /api/sessions/:roomId
+
 export const getSession = async (req, res) => {
   try {
     const session = await Session.findOne({ room: req.params.roomId });
@@ -16,7 +16,7 @@ export const getSession = async (req, res) => {
   }
 };
 
-// @route GET /api/sessions/my
+
 export const getMySessions = async (req, res) => {
   try {
     const rooms = await Room.find({ members: req.user._id });

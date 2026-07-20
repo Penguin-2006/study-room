@@ -38,11 +38,11 @@ app.get("/", (req, res) => {
   res.send("Study Room API is running...");
 });
 
-// Socket.io
+
 io.on("connection", (socket) => {
   console.log("User connected:", socket.id);
 
-  // Join a room
+  
   socket.on("join-room", async ({ roomCode, token }) => {
     try {
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
@@ -58,13 +58,13 @@ io.on("connection", (socket) => {
       socket.roomCode = roomCode;
       socket.user = user;
 
-      // Send existing session messages to the user
+      
       const session = await Session.findOne({ room: room._id });
       if (session) {
         socket.emit("session-history", session.messages);
       }
 
-      // Notify room that user joined
+      
       io.to(roomCode).emit("user-joined", { name: user.name });
 
       console.log(`${user.name} joined room ${roomCode}`);
@@ -73,7 +73,7 @@ io.on("connection", (socket) => {
     }
   });
 
-  // Handle message
+  
   socket.on("send-message", async ({ roomCode, message }) => {
     try {
       const room = await Room.findOne({ code: roomCode });
@@ -82,7 +82,7 @@ io.on("connection", (socket) => {
       const session = await Session.findOne({ room: room._id });
       if (!session) return;
 
-      // Save user message
+     
       const userMessage = {
         type: "user",
         content: message,
@@ -93,16 +93,16 @@ io.on("connection", (socket) => {
       session.messages.push(userMessage);
       await session.save();
 
-      // Broadcast user message to everyone in room
+      
       io.to(roomCode).emit("new-message", userMessage);
 
-      // Build conversation history for AI
+      
       const history = session.messages.slice(-20).map((msg) => ({
         role: msg.type === "user" ? "user" : "assistant",
         content: msg.content
       }));
 
-      // Call Groq API
+      
       const completion = await groq.chat.completions.create({
         model: "llama-3.3-70b-versatile",
         messages: [
@@ -118,7 +118,7 @@ io.on("connection", (socket) => {
 
       const aiResponse = completion.choices[0].message.content;
 
-      // Save AI message
+      
       const aiMessage = {
         type: "ai",
         content: aiResponse,
@@ -129,7 +129,7 @@ io.on("connection", (socket) => {
       session.messages.push(aiMessage);
       await session.save();
 
-      // Broadcast AI response to everyone in room
+      
       io.to(roomCode).emit("new-message", aiMessage);
 
     } catch (error) {
@@ -138,7 +138,7 @@ io.on("connection", (socket) => {
     }
   });
 
-  // Handle disconnect
+  
   socket.on("disconnect", () => {
     if (socket.user && socket.roomCode) {
       io.to(socket.roomCode).emit("user-left", { name: socket.user.name });

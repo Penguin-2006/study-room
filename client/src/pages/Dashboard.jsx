@@ -66,9 +66,9 @@ const Dashboard = () => {
 
       {error && <div className="error-box">{error}</div>}
 
-      {/* Create and Join */}
+      
       <div className="dashboard-grid">
-        {/* Create Room */}
+        
         <div className="card">
           <h2 className="dashboard-section-title">Create a Room</h2>
           <form onSubmit={handleCreateRoom}>
@@ -94,7 +94,7 @@ const Dashboard = () => {
           </form>
         </div>
 
-        {/* Join Room */}
+       
         <div className="card">
           <h2 className="dashboard-section-title">Join a Room</h2>
           <form onSubmit={handleJoinRoom}>
@@ -122,7 +122,7 @@ const Dashboard = () => {
         </div>
       </div>
 
-      {/* My Rooms */}
+      
       <h2 className="dashboard-section-title">My Rooms</h2>
       {loading ? (
         <div className="empty-state">Loading rooms...</div>

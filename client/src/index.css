@@ -10,7 +10,7 @@ body {
   color: #111827;
 }
 
-/* Navbar */
+
 .navbar {
   background-color: #ffffff;
   color: #111827;
@@ -47,7 +47,7 @@ body {
   color: #111827;
 }
 
-/* Buttons */
+
 .btn-primary {
   background-color: #6366f1;
   color: white;
@@ -124,7 +124,7 @@ body {
   color: white;
 }
 
-/* Hero */
+
 .hero {
   padding: 120px 48px 80px;
   max-width: 700px;
@@ -171,7 +171,7 @@ body {
   align-items: center;
 }
 
-/* Features */
+
 .features {
   padding: 80px 48px;
   max-width: 900px;
@@ -221,7 +221,7 @@ body {
   margin-bottom: 12px;
 }
 
-/* CTA */
+
 .cta {
   background-color: #f9fafb;
   border-top: 1px solid #e5e7eb;
@@ -242,7 +242,7 @@ body {
   font-size: 1rem;
 }
 
-/* Page Container */
+
 .page-container {
   max-width: 860px;
   margin: 0 auto;
@@ -264,7 +264,7 @@ body {
   margin-bottom: 40px;
 }
 
-/* Card */
+
 .card {
   background: #ffffff;
   border: 1px solid #e5e7eb;
@@ -272,7 +272,7 @@ body {
   padding: 28px;
 }
 
-/* Form */
+
 .form-center {
   display: flex;
   justify-content: center;
@@ -359,7 +359,7 @@ body {
   text-decoration: underline;
 }
 
-/* Error / Success */
+
 .error-box {
   background-color: #fef2f2;
   color: #dc2626;
@@ -379,7 +379,7 @@ body {
   border: 1px solid #bbf7d0;
 }
 
-/* Dashboard */
+
 .dashboard-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -433,7 +433,7 @@ body {
   margin-top: 4px;
 }
 
-/* Room / Chat */
+
 .room-container {
   display: flex;
   flex-direction: column;
@@ -589,7 +589,7 @@ body {
   font-weight: 500;
 }
 
-/* Mobile */
+
 @media (max-width: 768px) {
   .navbar { padding: 14px 20px; }
   .hero { padding: 60px 20px 48px; }

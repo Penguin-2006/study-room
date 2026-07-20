@@ -16,7 +16,7 @@ const Room = () => {
   const [toast, setToast] = useState(false);
   const messagesEndRef = useRef(null);
 
-  // Auto scroll to bottom
+  
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
@@ -39,22 +39,22 @@ const Room = () => {
 
     fetchRoom();
 
-    // Connect socket and join room
+    
     socket.connect();
     socket.emit("join-room", { roomCode: code, token: user.token });
 
-    // Receive session history
+    
     socket.on("session-history", (history) => {
       setMessages(history);
     });
 
-    // Receive new messages
+    
     socket.on("new-message", (msg) => {
       setMessages((prev) => [...prev, msg]);
       if (msg.type === "ai") setAiTyping(false);
     });
 
-    // User joined notification
+    
     socket.on("user-joined", ({ name }) => {
       setMessages((prev) => [...prev, {
         type: "notification",
@@ -62,7 +62,7 @@ const Room = () => {
       }]);
     });
 
-    // User left notification
+    
     socket.on("user-left", ({ name }) => {
       setMessages((prev) => [...prev, {
         type: "notification",
@@ -70,7 +70,7 @@ const Room = () => {
       }]);
     });
 
-    // Cleanup on unmount
+    
     return () => {
       socket.off("session-history");
       socket.off("new-message");
@@ -104,7 +104,7 @@ const Room = () => {
 
   return (
     <div className="room-container">
-      {/* Header */}
+      
       <div className="room-header">
         <div>
           <h1 className="room-title">{room?.topic}</h1>
@@ -129,7 +129,7 @@ const Room = () => {
         </div>
       </div>
 
-      {/* Messages */}
+     
       <div className="messages-container">
         {messages.length === 0 && (
           <div className="empty-state">
@@ -170,7 +170,7 @@ const Room = () => {
         <div ref={messagesEndRef} />
       </div>
 
-      {/* Input */}
+      
       <div className="message-input-area">
         <textarea
           value={message}
@@ -190,7 +190,7 @@ const Room = () => {
         </button>
       </div>
 
-      {/* Toast */}
+      
       {toast && (
         <div className="copy-toast">
           ✅ Room code copied!

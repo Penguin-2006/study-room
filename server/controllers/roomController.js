@@ -1,7 +1,7 @@
 import Room from "../models/Room.js";
 import Session from "../models/Session.js";
 
-// Generate a unique 6-character room code
+
 const generateRoomCode = () => {
   const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
   let code = "";
@@ -11,14 +11,14 @@ const generateRoomCode = () => {
   return code;
 };
 
-// @route POST /api/rooms
+
 export const createRoom = async (req, res) => {
   const { topic } = req.body;
 
   try {
     let code = generateRoomCode();
 
-    // Make sure code is unique
+    
     let existingRoom = await Room.findOne({ code });
     while (existingRoom) {
       code = generateRoomCode();
@@ -32,7 +32,7 @@ export const createRoom = async (req, res) => {
       members: [req.user._id]
     });
 
-    // Create an empty session for this room
+    
     await Session.create({ room: room._id, messages: [] });
 
     res.status(201).json(room);
@@ -41,7 +41,7 @@ export const createRoom = async (req, res) => {
   }
 };
 
-// @route POST /api/rooms/join
+
 export const joinRoom = async (req, res) => {
   const { code } = req.body;
 
@@ -52,7 +52,7 @@ export const joinRoom = async (req, res) => {
       return res.status(404).json({ message: "Room not found" });
     }
 
-    // Add user to members if not already there
+    
     if (!room.members.includes(req.user._id)) {
       room.members.push(req.user._id);
       await room.save();
@@ -64,7 +64,7 @@ export const joinRoom = async (req, res) => {
   }
 };
 
-// @route GET /api/rooms/my
+
 export const getMyRooms = async (req, res) => {
   try {
     const rooms = await Room.find({ members: req.user._id })
@@ -77,7 +77,7 @@ export const getMyRooms = async (req, res) => {
   }
 };
 
-// @route GET /api/rooms/:code
+
 export const getRoomByCode = async (req, res) => {
   try {
     const room = await Room.findOne({ code: req.params.code })

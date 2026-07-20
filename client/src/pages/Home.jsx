@@ -17,8 +17,7 @@ const Home = () => {
         </div>
       </div>
 
-      {/* Features */}
-      {/* Features */}
+      
         <div className="features">
         <p className="features-title">Everything you need</p>
         <div className="features-box">
@@ -42,7 +41,7 @@ const Home = () => {
         </div>
         </div>
 
-      {/* CTA */}
+      
       <div className="cta">
         <h2>Ready to study smarter?</h2>
         <p>Join students using AI to ace their exams.</p>
